@@ -1,0 +1,53 @@
+1. Reset Configuration 
+2. Set Interface, aktifkan wireless mikrotik 
+3. Setting DHCP - Client, nomor 4 dan nomor 5 
+4. Setting DNS Server sesuai dengan ISP, IP->DNS->Allow remote requets
+5. Setting NTP, System SNTP Client-> 0.id.pool.ntp.org -> lakukan pengecekan pada clock
+6. Setting IP Address, soal nomor 6 dan nomor 11
+7. Setting DHCP Server, soal nomor 7 dan nomor 13
+8. Setting Firewall dan Log On Disk, Soal nomor 8 9 dan 10
+9. Setting SSID wierless->wireless->ap bridge -> band 2ghz bgn -> SSID nma@proxyUKK
+--- ___ ---
+hotspot-> hotspot setup -> unceklis cookie -> use RADIUS
+RADIUS -> ceklis hotspot -> address 127.0.0.1 secret r12345
+harus terdownload usermanager
+in terminal /tool user-manager database clear
+login wifi with admin user
+login ip address router/userman
+
+list yang di setting 
+	- router 
+	- users
+	- profiles
+
+pada tab routers
+	name -> hotspot
+	ipaddress -> 127.0.0.1
+	Shared secret -> r12345
+	parent time zone -> +07:00
+
+pada tab profiles 
+	nama: paket 4 limit
+	add new limitation
+		new limit 
+		-> limit
+		-> time 07:00:00 - 16:00:00
+		-> add
+		-> save profile
+
+pada tab users
+	user -> 20
+	username -> 3
+	password -> 3
+
+ip -> web proxy	-> general -> centang enabled
+ip -> web proxy	-> general -> port 8080
+ip -> web proxy	-> general -> cahce adminstrator -> mhd_firdaus@smkn1beringin.sch.id
+ip -> web proxy	-> general -> centang cahce on disk 
+ip -> web proxy	-> access -> dst port -> 80 -> dst host -> www.linux.org -> action deny
+ip -> web proxy	-> access -> dst port -> 80 -> path -> *mp3* -> action deny
+ip -> web proxy	-> access -> dst port -> 80 -> path -> *mkv* -> action deny
+
+ip-> firewall -> nat -> general -> chain -> dstnat -> protocol ->  tcp -> dst port -> 80 -> in interface -> wlan1 -> action -> redirect -> to port -> 8080
+
+
